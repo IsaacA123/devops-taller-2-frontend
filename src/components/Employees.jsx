@@ -70,7 +70,7 @@ const Employees = () => {
   return (
     <div className="max-w-3xl mx-auto p-6 bg-white shadow-lg rounded-lg">
      <div className="flex justify-between items-center mb-8">
-        <h1 className="text-3xl font-bold text-gray-800">Lista de Productos</h1>
+        <h1 className="text-3xl font-bold text-gray-800">Lista de Empleados</h1>
         <button 
           onClick={handleLogout} 
           className="text-lg text-gray-600 hover:text-gray-900 flex items-center"
@@ -115,7 +115,9 @@ const Employees = () => {
       <ul>
         {employees.map((employee) => (
           <li key={employee.id} className="border border-gray-300 p-4 mb-4 rounded flex justify-between items-center">
+            <span className="text-gray-700">{employee.id}</span>
             <span className="text-gray-700">{employee.username}</span>
+            <span className="text-gray-700">{employee.role}</span>
           </li>
         ))}
       </ul>
