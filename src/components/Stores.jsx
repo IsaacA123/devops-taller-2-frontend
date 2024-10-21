@@ -32,7 +32,7 @@ const Stores = () => {
         } else {
           errorMessage = error.message;
         }
-        setError(errorMessage);
+        setError(errorMessage.message);
       }
     };
     fetchStores();
@@ -40,7 +40,7 @@ const Stores = () => {
 
   const handleCreateShop = async () => {
     if (!newShopName.trim()) {
-      toast.error('El nombre de la tienda no puede estar vacío');
+      setError('El nombre de la tienda no puede estar vacío');
       return;
     }
 
@@ -59,10 +59,8 @@ const Stores = () => {
       setStores([...stores, response.data]);
       setNewShopName('');
       setIsCreating(false);
-      toast.success('Tienda creada con éxito');
     } catch (error) {
       setError('Error al crear la tienda');
-      toast.error('Error al crear la tienda');
     }
   };
 

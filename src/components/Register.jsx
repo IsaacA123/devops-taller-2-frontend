@@ -12,7 +12,6 @@ export default function Register() {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-
   useEffect(() => {
     if (password && confirmPassword) {
         setPasswordsMatch(password === confirmPassword);

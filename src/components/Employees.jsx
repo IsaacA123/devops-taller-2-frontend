@@ -32,7 +32,7 @@ const Employees = () => {
         } else {
           errorMessage = error.message;
         }
-        setError(errorMessage);
+        setError(errorMessage.message);
       }
     };
     fetchEmployees();
@@ -40,7 +40,7 @@ const Employees = () => {
 
   const handleCreateEmployee = async () => {
     if (!newEmployee.username.trim() || !newEmployee.password) {
-      toast.error('Completa todos los campos');
+      setError('Completa todos los campos');
       return;
     }
 
@@ -60,7 +60,6 @@ const Employees = () => {
       setNewEmployee({ username: "", password: "", role: "employee" });
     } catch (error) {
       setError('Error al crear el empleado');
-      toast.error('Error al crear el empleado');
     }
   };
   const handleLogout = () => {

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"; 
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { AiOutlinePlus, AiOutlineEdit, AiOutlineDelete, AiOutlineStock } from "react-icons/ai"; // Add icons
+import { AiOutlinePlus, AiOutlineEdit, AiOutlineDelete, AiOutlineStock, AiOutlineLogout } from "react-icons/ai"; // Add icons
 import { toast } from "react-toastify"; // For notifications
 
 const API_BASE_URL = process.env.REACT_APP_API_URL;
@@ -34,7 +34,7 @@ const ProductList = () => {
         } else {
           errorMessage = error.message;
         }
-        setError(errorMessage);
+        setError(errorMessage.message);
       }
     };
     fetchProducts();
@@ -42,7 +42,7 @@ const ProductList = () => {
 
   const handleCreateProduct = async () => {
     if (!newProduct.name.trim() || !newProduct.price || !newProduct.stock) {
-      toast.error('Completa todos los campos');
+      setError("Completa todos los campos")
       return;
     }
 
@@ -63,7 +63,6 @@ const ProductList = () => {
       setIsCreating(false);
     } catch (error) {
       setError('Error al crear el producto');
-      toast.error('Error al crear el producto');
     }
   };
 
@@ -82,10 +81,8 @@ const ProductList = () => {
 
       setProducts(products.map(p => p.id === editProduct.id ? response.data : p));
       setEditProduct(null);
-      toast.success('Producto editado con éxito');
     } catch (error) {
       setError('Error al editar el producto');
-      toast.error('Error al editar el producto');
     }
   };
 
@@ -98,10 +95,8 @@ const ProductList = () => {
       });
 
       setProducts(products.filter(p => p.id !== productId));
-      toast.success('Producto eliminado con éxito');
     } catch (error) {
       setError('Error al eliminar el producto');
-      toast.error('Error al eliminar el producto');
     }
   };
 
@@ -122,10 +117,8 @@ const ProductList = () => {
       );
 
       setProducts(products.map(p => p.id === productId ? response.data : p));
-      toast.success('Stock actualizado con éxito');
     } catch (error) {
       setError('Error al actualizar el stock');
-      toast.error('Error al actualizar el stock');
     }
   };
 
@@ -138,8 +131,12 @@ const ProductList = () => {
     <div className="max-w-3xl mx-auto p-6 bg-white shadow-lg rounded-lg transition-transform duration-300 transform hover:scale-105">
       <div className="flex justify-between items-center mb-8">
         <h1 className="text-3xl font-bold text-gray-800">Lista de Productos</h1>
-        <button onClick={handleLogout} className="text-lg text-gray-600 hover:text-gray-900 underline">Cerrar sesión</button>
-        <button onClick={() => navigate("/stores")} 
+        <button 
+          onClick={handleLogout} 
+          className="text-lg text-gray-600 hover:text-gray-900 flex items-center"
+        >
+          <AiOutlineLogout className="mr-2" /> Cerrar sesión
+        </button>        <button onClick={() => navigate("/stores")} 
           className="bg-blue-500 text-white text-lg font-semibold py-2 px-4 rounded-md shadow-md transition-transform transform hover:scale-105 hover:bg-blue-600 hover:shadow-lg mb-4">
           Volver atras
         </button>
