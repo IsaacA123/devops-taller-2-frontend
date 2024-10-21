@@ -4,7 +4,7 @@ import axios from "axios";
 const API_BASE_URL = process.env.REACT_APP_API_URL;
 
 const Login = () => {
-  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -16,7 +16,7 @@ const Login = () => {
     setError('');
     await axios.post(
       API_BASE_URL+`/auth/login`,{
-        username: email,
+        username: username,
         password
     },
     {
@@ -57,8 +57,8 @@ const Login = () => {
             </div>}
             {error && <p className="text-error font-semibold">{error}</p>}
             <div className="relative group mt-6">
-              <input onChange={(e) => setEmail(e.target.value)} type="text" className="bg-secondary-light outline-none p-2 w-full peer"  placeholder="" required></input>
-              <label className="absolute py-2 h-full left-2 pointer-events-none group-focus-within:-translate-y-full peer-[:not(:placeholder-shown)]:-translate-y-full duration-100 ">Correo</label>
+              <input onChange={(e) => setUsername(e.target.value)} type="text" className="bg-secondary-light outline-none p-2 w-full peer"  placeholder="" required></input>
+              <label className="absolute py-2 h-full left-2 pointer-events-none group-focus-within:-translate-y-full peer-[:not(:placeholder-shown)]:-translate-y-full duration-100 ">Nombre de Usuario</label>
             </div>
             <div className="relative group mt-6">
               <input onChange={(e) => setPassword(e.target.value)} type="password" className="bg-secondary-light outline-none p-2 w-full peer" placeholder="" required></input>

@@ -13,12 +13,12 @@ module.exports = {
           dark:'#060',
         },
         secondary: {
-          light: '#333',
-          DEFAULT: '#222',
+          light: '#222',
+          DEFAULT: '#111',
           dark: '#000',
         },
         accent: '#f82',    
-        background: '#aaa',
+        background: '#fff',
         error: '#f55',
       },
       boxShadow: {
